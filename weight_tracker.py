@@ -29,10 +29,10 @@ if st.button("Submit Today’s Data"):
         st.warning("You’ve already entered data for today.")
     else:
         new_row = pd.DataFrame({
-            "Date": [today],
-            "Weight": [weight],
-            "Calories": [calories]
-        })
+    "Date": [pd.Timestamp(today)],  # convert to pandas Timestamp
+    "Weight": [weight],
+    "Calories": [calories]
+})
         data = pd.concat([data, new_row], ignore_index=True)
         data.to_csv("tracker_data.csv", index=False)
         st.success("Data saved!")
